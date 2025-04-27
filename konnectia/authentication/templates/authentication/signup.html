@@ -14,7 +14,8 @@
   </head>
   <body>
     <div class="wrap">
-      <form action="">
+      <form action="/signup" method="POST">
+        {% csrf_token %}
         <h1>SignUp</h1>
         <div class="input-box">
           <label for="">Username</label>
@@ -39,6 +40,13 @@
           <i class='bx bx-envelope'></i>
         </div>
 
+
+
+        <div class="input-box">
+          <label for="">Password</label>
+          <input type="password" id="pass1" placeholder="Create your password" name="pass1" required />
+          <i class='bx bx-envelope'></i>
+        </div>
 
         <div class="input-box">
           <label for="">Confirm Password</label>
