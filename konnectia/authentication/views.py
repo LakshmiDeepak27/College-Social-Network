@@ -8,8 +8,8 @@ def homePage(request):
 def signup(request):
     return render(request , "authentication/signup.html")
 
-def login(request):
-    return render(request , "authentication/login.html")
+def signin(request):
+    return render(request , "authentication/signin.html")
 
-def logout(request):
+def signout(request):
     pass
