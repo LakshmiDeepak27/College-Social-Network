@@ -24,11 +24,21 @@
           <a href="#">Department</a>
           <a href="#">Community</a>
         </div>
+        
+
+        
+        {% if user.is_authenticated %}
+        
+        <button type="submit" class="login"><a href="/signout">Logout</a></button>
+
+        {% else %}
+
         <div class="login-register">
           <button type="submit" class="register"><a href="/signup">SignUp</a></button>
           <button type="submit" class="login"><a href="/signin">Login</a></button>
-          <!-- <button type="submit" ><a href="/logout">Logout</a></button>  -->
+          <!-- <button type="submit"><a href="/signout">Logout</a></button> -->
         </div>
+        {% endif %}
       </div>
     </div>
   </nav>

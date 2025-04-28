@@ -28,6 +28,22 @@ def signup(request):
     return render(request , "authentication/signup.html")
 
 def signin(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['pass1']
+
+        user = authenticate(username=username , password=password)
+
+        if user is not None:
+            login(request , user)
+            # messages.success(request , "You have been logged in successfully")
+            return render(request , "konnecita/authentication/templates/authentication/index. html")
+        
+        else:
+            messages.error(request , "Invalid credentials, please try again")
+            return redirect('home')
+
+
     return render(request , "authentication/signin.html")
 
 def signout(request):
