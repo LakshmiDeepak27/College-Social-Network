@@ -9,8 +9,8 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
+from . data import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,6 +23,23 @@ SECRET_KEY = 'django-insecure-0la&_84t=wzm&rwt_w4x-fe-q#77tc-9n^v0(%i^%&6qvh3yy6
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# settings.py
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+
+EMAIL_USE_TLS=EMAIL_USE_TLS
+EMAIL_HOST = EMAIL_HOST
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_PORT = EMAIL_PORT
+
+
+
+
+
+
+
 
 import os
 STATICFILES_DIRS = [
@@ -60,8 +77,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-                    BASE_DIR / 'konnectia' / 'templates', 'static',
-                    BASE_DIR / 'template', 
+                    BASE_DIR / 'konnectia' / 'templates',
+                    BASE_DIR / 'template',
                     os.path.join(BASE_DIR, 'react_django/dist'),
                 ],
         'APP_DIRS': True,
@@ -125,8 +142,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, BASE_DIR / "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
