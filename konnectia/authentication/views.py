@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.mail import EmailMessage, send_mail
 from konnectia import settings
 # Create your views here.
 
@@ -20,43 +21,47 @@ def signup(request):
         cpassword = request.POST['pass2']
 
 
-        if  User.objects.filter(username=username).exists():
-            messages.error(request , "Username already exists.Please try some other username")
-            return redirect('home')
+        # if  User.objects.filter(username=username).exists():
+        #     messages.error(request , "Username already exists.Please try some other username")
+        #     return redirect('home')
         
 
-        if  User.objects.filter(eamil=email).exists():
-            messages.error(request , "Email already exists.Please try some other email")
-            return redirect('home')
+        # if  User.objects.filter(eamil=email).exists():
+        #     messages.error(request , "Email already exists.Please try some other email")
+        #     return redirect('home')
         
-        if (username)>10:
-            messages.error(request , "Username must be under 10 characters")
-            # return redirect('home')
+        # if (username)>10:
+        #     messages.error(request , "Username must be under 10 characters")
+        #     # return redirect('home')
         
-        if password != cpassword:
-            messages.error(request , "Password do not match")
-            # return redirect('home')
+        # if password != cpassword:
+        #     messages.error(request , "Password do not match")
+        #     # return redirect('home')
         
-        if not username.isalnum():
-            messages.error(request , "Username should only contain letters and numbers")
-            return redirect('home')
+        # if not username.isalnum():
+        #     messages.error(request , "Username should only contain letters and numbers")
+        #     return redirect('home')
 
         myuser= User.objects.create_user(username,email,password) 
         myuser.first_name = first_name
         myuser.last_name = last_name
         myuser.save()
 
-        messages.success(request , "Your account has been created successfully.We have also sent you a confirmation email, please confirm your email address in order to activate your account")
+        # Send welcome email
+        subject = "Welcome to Konnectia"
+        message = f"Hello {myuser.first_name}!!\nWelcome to Konnectia!!\nThank you for visiting our website\nWe have also sent you a confirmation email, please confirm your email address in order to activate your account\n\nThank you for visiting our website\nWe hope you have a great experience with us.\n\nRegards\nKonnectia"
+        from_email = settings.EMAIL_HOST_USER       
+        to_list = [myuser.email]
+        
+        try:
+            send_mail(subject, message, from_email, to_list, fail_silently=False)
+            messages.success(request, "Your account has been created successfully. We have sent you a confirmation email.")
+        except Exception as e:
+            messages.error(request, f"Account created but email could not be sent: {str(e)}")
+
         return redirect('signin')
 
 
-
-        #message 
-        subject = "Welcome to Konnectia"
-        message = "Hello " + myuser.first_name + "!!\n" + "Welcome to Konnectia!!\n Thank you for visiting our website\n We have also sent you a confirmation email, please confirm your email address in order to activate your account\n\n Thank you for visiting our website\n We hope you have a great experience with us.\n\n Regards \n Konnectia"
-        from_email = settings.EMAIL_HOST_USER       
-        to_list = [myuser.email]
-        send_mail(subject, message, from_email, to_list, fail_silently=True)
     return render(request , "authentication/signup.html")
 
 def signin(request):
