@@ -19,7 +19,7 @@ body {
 .wrap{
     width: 450px;
     backdrop-filter: blur(5px);
-    border: 2px solid #E43D12;
+    border: 2px solid #e43d12;
     border: 2px solid rgba(227, 220, 220, 0.321);
     box-shadow: 0 0 10px rgb(22, 21, 21);
     color: #0e0d0d;
