@@ -14,6 +14,9 @@ from django.template.loader import render_to_string
 from .tokens import generate_token
 # Create your views here.
 
+from django.contrib.auth import get_user_model  
+User = get_user_model() 
+
 def homePage(request):
     return render(request, "homePage.html")
 
