@@ -170,3 +170,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #using corsheaders
 CORS_ORIGIN_ALLOW_ALL = True  # or use CORS_ORIGIN_WHITELIST
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React runs here
+]

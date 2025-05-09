@@ -123,7 +123,8 @@ def signin(request):
             if user.is_active:
                 login(request, user)
                 messages.success(request, "You have been logged in successfully")
-                return render(request, "authentication/index.html")
+                # return render(request, "authentication/index.html")
+                return redirect("http://localhost:3000/")
             else:
                 messages.error(request, "Your account is not activated. Please check your email for the activation link.")
                 return render(request, "authentication/signin.html")
