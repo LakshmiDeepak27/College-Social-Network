@@ -9,9 +9,9 @@ import Navbar from './components/layout/Navbar';
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="App">
         <Navbar />
-        <main className="container mx-auto px-4 py-8">
+        <main>
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/profile/:userId" element={<Profile />} />

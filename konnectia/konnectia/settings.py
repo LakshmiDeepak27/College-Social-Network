@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'api',
+    'mainpage',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = "mainpage.User"
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
