@@ -1,4 +1,3 @@
-
 from django.urls import path
 
 from django.conf import settings
@@ -7,7 +6,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.index, name="index"),  # Home/All Posts
+    path("allposts/", views.index, name="all_posts"),  # Optional: /allposts/ also shows all posts
     path("n/logout", views.logout_view, name="logout"),
     path("<str:username>", views.profile, name='profile'),
     path("n/following", views.following, name='following'),
@@ -22,7 +22,7 @@ urlpatterns = [
     path("n/post/<int:post_id>/delete", views.delete_post, name="deletepost"),
     path("<str:username>/follow", views.follow, name="followuser"),
     path("<str:username>/unfollow", views.unfollow, name="unfollowuser"),
-    path("n/post/<int:post_id>/edit", views.edit_post, name="editpost")
+    path("n/post/<int:post_id>/edit", views.edit_post, name="editpost"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
