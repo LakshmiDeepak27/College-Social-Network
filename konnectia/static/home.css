@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-padding-top: 80px; /* Adjust to your navbar height */
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;

@@ -122,10 +122,13 @@ def profile(request, username):
         followings = Follower.objects.filter(followers=request.user).values_list('user', flat=True)
         suggestions = User.objects.exclude(pk__in=followings).exclude(username=request.user.username).order_by("?")[:6]
 
-        if request.user in Follower.objects.get(user=user).followers.all():
+        follower_obj, _ = Follower.objects.get_or_create(user=user)
+        if request.user in follower_obj.followers.all():
             follower = True
-    
-    follower_count = Follower.objects.get(user=user).followers.all().count()
+    else:
+        follower_obj, _ = Follower.objects.get_or_create(user=user)
+
+    follower_count = follower_obj.followers.all().count()
     following_count = Follower.objects.filter(followers=user).count()
     return render(request, 'network/profile.html', {
         "username": user,
