@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -393,3 +395,12 @@ def delete_post(request, post_id):
             return HttpResponse("Method must be 'PUT'")
     else:
         return HttpResponseRedirect(reverse('login'))
+    
+
+def explore_resources(request):
+    try:
+        user = User.objects.get(username=request.user.username)
+        # Add logic to render the profile or resources page
+        return render(request, 'explore_resources_page.html', {'user': user})
+    except User.DoesNotExist:
+        raise Http404("User does not exist")

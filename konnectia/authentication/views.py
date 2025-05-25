@@ -1,4 +1,6 @@
 from django.shortcuts import redirect, render
+from django.shortcuts import render
+
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -19,6 +21,9 @@ User = get_user_model()
 
 def homePage(request):
     return render(request, "homePage.html")
+
+def explore_resources(request):
+    return render(request, 'explore_resources.html')
 
 def signup(request):
 

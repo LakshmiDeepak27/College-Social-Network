@@ -6,6 +6,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path('explore/', views.explore_resources, name='explore'),
     path("allposts/", views.index, name="all_posts"),
     path("n/logout", views.logout_view, name="logout"),
     path("<str:username>", views.profile, name='profile'),
@@ -22,6 +23,8 @@ urlpatterns = [
     path("<str:username>/follow", views.follow, name="followuser"),
     path("<str:username>/unfollow", views.unfollow, name="unfollowuser"),
     path("n/post/<int:post_id>/edit", views.edit_post, name="editpost"),
+    path('explore_resources_page.html', views.profile, name='explore_resources'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
