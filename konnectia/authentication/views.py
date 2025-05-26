@@ -14,6 +14,9 @@ from django.template.loader import render_to_string
 from .tokens import generate_token
 # Create your views here.
 
+from django.contrib.auth import get_user_model  
+User = get_user_model() 
+
 def homePage(request):
     return render(request, "homePage.html")
 
@@ -120,7 +123,9 @@ def signin(request):
             if user.is_active:
                 login(request, user)
                 messages.success(request, "You have been logged in successfully")
-                return render(request, "authentication/index.html")
+                # return render(request, "authentication/index.html")
+                # return redirect("http://localhost:3000/")
+                return render(request, "network/index.html")
             else:
                 messages.error(request, "Your account is not activated. Please check your email for the activation link.")
                 return render(request, "authentication/signin.html")

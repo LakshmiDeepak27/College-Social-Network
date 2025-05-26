@@ -1,0 +1,558 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* General Layout */
+body {
+  background: #f5f6fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+.sidebar {
+  flex: 0 0 260px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px 16px;
+  min-height: 300px;
+}
+.feed {
+  flex: 1 1 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px 16px;
+  min-width: 0;
+}
+
+/* Profile Sidebar */
+.profile-overview {
+  text-align: center;
+}
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+.profile-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0;
+}
+.profile-bio {
+  color: #666;
+  margin: 8px 0 0 0;
+}
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+.profile-stat-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.profile-stat-label {
+  color: #888;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Create Post */
+.create-post {
+  margin-bottom: 24px;
+}
+.create-post-textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+.create-post-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.create-post-btn:hover {
+  background: #1741a6;
+}
+
+/* Posts Feed */
+.posts-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.post {
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  padding: 16px;
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.post-author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.post-author {
+  font-weight: bold;
+  margin: 0;
+}
+.post-timestamp {
+  color: #888;
+  font-size: 0.95rem;
+}
+.post-content {
+  margin: 10px 0 14px 0;
+  font-size: 1.08rem;
+}
+.post-actions {
+  display: flex;
+  gap: 18px;
+}
+.like-btn, .comment-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 8px;
+  transition: color 0.2s;
+}
+.like-btn:hover {
+  color: #e11d48;
+}
+.comment-btn:hover {
+  color: #0ea5e9;
+}
+
+/* Alumni Suggestions Sidebar */
+.alumni-suggestions {
+  flex: 0 0 260px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px 16px;
+  min-height: 300px;
+}
+.alumni-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+.alumni-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.alumni-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.alumni-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.alumni-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+.alumni-name {
+  font-weight: bold;
+  margin: 0;
+}
+.alumni-position {
+  color: #666;
+  font-size: 0.98rem;
+}
+.alumni-meta {
+  color: #888;
+  font-size: 0.93rem;
+}
+.follow-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.following {
+  background: #e5e7eb;
+  color: #222;
+}
+.follow-btn:hover:not(.following) {
+  background: #1741a6;
+}
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  height: 60px;
+  margin-bottom: 16px;
+}
+.navbar-logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2563eb;
+  text-decoration: none;
+}
+.navbar-links {
+  display: flex;
+  gap: 24px;
+}
+.navbar-link {
+  color: #222;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.navbar-link:hover {
+  color: #2563eb;
+}
+
+/* Profile Page */
+.profile-container {
+  max-width: 900px;
+  margin: 32px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 32px 24px;
+}
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.profile-avatar-large {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+}
+.profile-details {
+  flex: 1;
+}
+.profile-name-large {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+.profile-meta {
+  color: #888;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.profile-follow-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s;
+}
+.profile-follow-btn.following {
+  background: #e5e7eb;
+  color: #222;
+}
+.profile-follow-btn:hover:not(.following) {
+  background: #1741a6;
+}
+.profile-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 12px;
+}
+.profile-stat-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.profile-stat-label {
+  color: #888;
+  font-size: 0.95rem;
+}
+.profile-current-position {
+  margin-top: 10px;
+  color: #2563eb;
+  font-weight: 500;
+}
+.profile-skills-interests {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+.profile-skills, .profile-interests {
+  flex: 1;
+}
+.profile-skill-list, .profile-interest-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.profile-skill, .profile-interest {
+  background: #f1f5f9;
+  color: #2563eb;
+  border-radius: 16px;
+  padding: 6px 16px;
+  font-size: 0.98rem;
+}
+.profile-posts-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.profile-post {
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.profile-post-content {
+  font-size: 1.08rem;
+  margin-bottom: 10px;
+}
+.profile-post-actions {
+  display: flex;
+  gap: 18px;
+  color: #2563eb;
+  font-size: 1rem;
+}
+.profile-post-like {
+  margin-right: 10px;
+}
+.profile-post-comment {
+  margin-right: 10px;
+}
+.profile-post-timestamp {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* Alumni Directory Page */
+.alumni-container {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+.alumni-header {
+  margin-bottom: 24px;
+}
+.alumni-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.alumni-search {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.alumni-search-input, .alumni-search-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+.alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.alumni-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.alumni-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.alumni-card-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+.alumni-card-details {
+  flex: 1;
+}
+.alumni-card-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+.alumni-card-position {
+  color: #666;
+  font-size: 0.98rem;
+}
+.alumni-card-meta {
+  color: #888;
+  font-size: 0.93rem;
+}
+.alumni-card-bio {
+  color: #444;
+  font-size: 1rem;
+}
+.alumni-card-company-location {
+  display: flex;
+  gap: 16px;
+  color: #888;
+  font-size: 0.97rem;
+}
+.alumni-card-skills-title {
+  font-weight: 500;
+  color: #2563eb;
+  margin-right: 8px;
+}
+.alumni-card-skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.alumni-card-skill {
+  background: #f1f5f9;
+  color: #2563eb;
+  border-radius: 16px;
+  padding: 6px 16px;
+  font-size: 0.98rem;
+}
+.alumni-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.alumni-card-view-profile {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.alumni-card-view-profile:hover {
+  text-decoration: underline;
+}
+.alumni-card-follow-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.alumni-card-follow-btn.following {
+  background: #e5e7eb;
+  color: #222;
+}
+.alumni-card-follow-btn:hover:not(.following) {
+  background: #1741a6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .sidebar, .alumni-suggestions {
+    min-height: unset;
+    margin-bottom: 16px;
+  }
+  .feed {
+    min-width: unset;
+  }
+  .profile-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  .profile-skills-interests {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
