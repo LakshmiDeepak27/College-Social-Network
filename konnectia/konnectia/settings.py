@@ -123,7 +123,8 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "mainpage.User"
+AUTH_USER_MODEL = 'mainpage.User'
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -175,3 +176,6 @@ CORS_ORIGIN_ALLOW_ALL = True  # or use CORS_ORIGIN_WHITELIST
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React runs here
 ]
+
+LOGIN_URL = '/login/'  # or your login path
+LOGIN_REDIRECT_URL = '/'  # or your homepage
