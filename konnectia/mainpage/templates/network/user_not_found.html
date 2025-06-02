@@ -1,0 +1,12 @@
+{% extends "network/layout.html" %}
+{% block body %}
+<div class="main-div">
+    <div class="left-div-content">
+        <div style="padding: 40px; text-align: center;">
+            <h2>User Not Found</h2>
+            <p class="grey">Sorry, the user <strong>@{{ username }}</strong> does not exist.</p>
+            <a href="{% url 'all_posts' %}" class="btn btn-success">Back to All Posts</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

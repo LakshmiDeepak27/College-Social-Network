@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     let active = document.querySelector('.body').dataset.page;
     document.querySelector("#"+active).classList.add('active');
@@ -29,20 +28,26 @@ function remove_drop_down(event) {
 function createpost() {
     let popup = document.querySelector(".popup");
     popup.style.display = 'block';
-    popup.querySelector('.large-popup').style.display = 'block'
-    document.querySelector('.body').setAttribute('aria-hidden', 'true');
+    popup.querySelector('.large-popup').style.display = 'block';
     document.querySelector('body').style.overflow = "hidden";
+    
+    // Reset form
+    let form = popup.querySelector('.large-popup').querySelector('form');
+    form.reset();
+    form.querySelector('#post-text').value = '';
+    form.querySelector('#img-div').style.backgroundImage = '';
+    form.querySelector('#img-div').style.display = 'none';
+    form.querySelector('#del-img').style.display = 'none';
+    form.querySelector('#spinner').style.display = 'none';
+    form.querySelector('.submit-btn').disabled = true;
+    
+    // Add event listeners
     document.querySelector('#insert-img').onchange = previewFile;
-    popup.querySelector('.large-popup').querySelector('form').setAttribute('onsubmit', '');
-    popup.querySelector('.large-popup').querySelector("#post-text").addEventListener('input', (event) => {
-        if(event.target.value.trim().length > 0) {
-            popup.querySelector('.submit-btn').disabled = false;
-        }
-        else if(event.target.parentElement.querySelector('#img-div').style.backgroundImage) {
-            popup.querySelector('.submit-btn').disabled = false;
-        }
-        else {
-            popup.querySelector('.submit-btn').disabled = true;
+    form.querySelector("#post-text").addEventListener('input', (event) => {
+        if(event.target.value.trim().length > 0 || form.querySelector('#img-div').style.backgroundImage) {
+            form.querySelector('.submit-btn').disabled = false;
+        } else {
+            form.querySelector('.submit-btn').disabled = true;
         }
     });
 }
@@ -332,7 +337,7 @@ function follow_user(element, username, origin) {
         return false;
     }
     fetch('/'+username+'/follow', {
-        method: 'PUT'
+        method: 'POST'
     })
     .then(() => {
         if(origin === 'suggestion') {

@@ -16,7 +16,7 @@
             <div class="small-popup">
                 <div style="margin-bottom: 10px; font-size: 1.1em;"><strong>Delete Post?</strong></div>
                 <div class="grey" style="font-size: .85em; margin-bottom: 15px;">
-                    This can’t be undone and it will be removed from your profile, the timeline of any accounts that follow you, and from Network search results.
+                    This can't be undone and it will be removed from your profile, the timeline of any accounts that follow you, and from Network search results.
                 </div>
                 <div style="padding: 0px 5%;">
                     <button class="btn btn-light float-left" onclick="remove_popup()">Cancel</button>
@@ -90,7 +90,7 @@
         </div>
         <div class="body" data-page="{{page}}">
             <div class="sidenav">
-                <a href="{% url 'index' %}" class="navbar-brand">
+                <a href="{% url 'all_posts' %}" class="navbar-brand">
                 <h2>KONNECTIA</h2>
                 </a>
                 <div style="height: 100%;">
@@ -98,23 +98,23 @@
                         <div>
                             <ul>
                                 <li class="nav-item" id="all_posts">
-                                <a href="{% url 'index' %}" class="nav-link">
-                                    <div>
-                                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-card-heading" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                                            <path fill-rule="evenodd" d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
-                                            <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
-                                        </svg>
-                                        &nbsp;&nbsp;All Posts
-                                    </div>
-                                </a>
+                                    <a href="{% url 'all_posts' %}" class="nav-link {% if request.path == '/allposts/' %}active{% endif %}">
+                                        <div>
+                                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-card-heading" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                                                <path fill-rule="evenodd" d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z"/>
+                                                <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z"/>
+                                            </svg>
+                                            &nbsp;&nbsp;All Posts
+                                        </div>
+                                    </a>
                                 </li>
                                 {% if user.is_authenticated %}
                                     <li class="nav-item" id="following">
-                                        <a href="{% url 'following' %}" class="nav-link">
+                                        <a href="{% url 'following' %}" class="nav-link {% if request.path == '/n/following' %}active{% endif %}">
                                             <div>
-                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-people" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.995-.944v-.002.002zM7.022 13h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zm7.973.056v-.002.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13 7c0 1.105-.672 2-1.5 2S10 8.105 10 7s.672-2 1.5-2S13 5.895 13 7zm-7 0c0 1.105-.672 2-1.5 2S3 8.105 3 7s.672-2 1.5-2S6 5.895 6 7zm7 2c1.105 0 2 .672 2 1.5V12c0 .276-.224.5-.5.5h-13A.5.5 0 0 1 1 12v-1.5C1 9.672 1.895 9 3 9h10z"/>
                                                 </svg>
                                                 &nbsp;&nbsp;Following
                                             </div>
@@ -206,8 +206,20 @@
                 </div>
             </div>
             
-            {% block body %}
-            {% endblock %}
+            <div class="main-div">
+                <div class="left-div">
+                    <div class="head">
+                        <div class="heading">
+                            <h2>Welcome to DSATM Social Network</h2>
+                            <p class="text-muted">Connect with alumni, share experiences, and stay updated with campus life</p>
+                        </div>
+                    </div>
+                    <div class="left-div-content">
+                        {% block body %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
 
             <div class="right-div">
                 <nav class="head">

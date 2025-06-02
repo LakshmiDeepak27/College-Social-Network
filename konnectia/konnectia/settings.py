@@ -58,11 +58,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mainpage',
     'authentication',
+    'notifications',
+    'channels',
     'rest_framework',
     'corsheaders',
     'api',
-    'mainpage',
 ]
 
 MIDDLEWARE = [
@@ -179,3 +181,15 @@ CORS_ALLOWED_ORIGINS = [
 
 LOGIN_URL = '/login/'  # or your login path
 LOGIN_REDIRECT_URL = '/'  # or your homepage
+
+# Channels Configuration
+ASGI_APPLICATION = 'konnectia.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}

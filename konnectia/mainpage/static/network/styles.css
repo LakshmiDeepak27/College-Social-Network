@@ -1,816 +1,720 @@
+/*
+* DSATM Social Network - Shockingly Beautiful Styles
+*
+* This CSS file provides a complete visual overhaul for the DSATM Social Network,
+* aiming for a modern, clean, and engaging user interface.
+*/
 
-.body{
+/* Basic Reset and Typography */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #1c1e21;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Layout - Using Flexbox for a responsive structure */
+.body {
     display: flex;
-    min-height: 100%;
-    font-family: system-ui, sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
 }
-.btn{
-    border-radius: 20px;
-    padding: 0.32rem 1rem 0.375rem 1rem;
-}
-.btn, .btn:focus, .btn:active{
-    box-shadow: none !important;
-    -webkit-box-shadow: none !important;
-}
-.btn:disabled{
-    cursor: default;
-}
-
-.icon-btn {
-    background: none;
-    border-color: transparent;
-    color: #28a745;
-    line-height: .82em;
-    padding: 4px;
-    margin: 0px;
-    border-radius: 999px;
-    width: max-content;
-}
-.icon-btn:hover{
-    background-color: rgba(40, 167, 69, .1);
-    transition-duration: .35s;
-    cursor: pointer;
-}
-.icon-btn:active{
-    background-color: rgba(40, 167, 69, .23);
-    transition-duration: .35s;
-}
-.icon-btn:focus{
-    outline: none;
-}
-.grey{
-    color: #657786;
-}
-svg{
-    vertical-align: text-top;
-}
-
 
 .sidenav {
-    height: 100%;
-    width: 21.8%;
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 20px 15px;
+    background-color: #ffffff;
+    border-right: 1px solid #dadde1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: width 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.main-div {
+    flex-grow: 1;
+    width: 100%; /* Take remaining width */
+    max-width: 900px; /* Max width for main content */
+    margin: 0 auto; /* Center the main content */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.right-div {
+    width: 300px;
+    min-width: 300px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 20px 15px;
+    background-color: #ffffff;
+    border-left: 1px solid #dadde1;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .right-div {
+        width: 250px;
+        min-width: 250px;
+    }
+    .sidenav {
+        width: 220px;
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 992px) {
+    .right-div {
+        display: none;
+    }
+    .main-div {
+        width: calc(100% - 260px);
+        margin-left: 260px;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidenav {
+        width: 70px;
+        min-width: 70px;
+    }
+    .sidenav .nav-link span {
+        display: none;
+    }
+    .sidenav .user_account .user-details {
+        display: none;
+    }
+    .sidenav .new-post-btn span {
+        display: none;
+    }
+    .sidenav .new-post-btn svg {
+        margin-right: 0 !important;
+    }
+    .main-div {
+        width: calc(100% - 70px);
+        margin-left: 70px;
+    }
+    .sidenav .nav-link > div {
+        justify-content: center;
+        padding: 10px !important;
+    }
+    .sidenav .user_account {
+        justify-content: center;
+        padding: 10px !important;
+    }
+     .sidenav .small-profilepic {
+        margin-right: 0 !important;
+     }
+    .sidenav .new-post-btn {
+        padding: 10px !important;
+        text-align: center;
+    }
+}
+
+/* Navbar Brand */
+.navbar-brand h2 {
+    color: #1877f2;
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+/* Sidenav Navigation */
+.sidenav ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.sidenav li {
+    margin-bottom: 8px;
+}
+
+.sidenav .nav-link {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #1c1e21;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.sidenav .nav-link:hover {
+    background-color: #f0f2f5;
+}
+
+.sidenav .nav-link > div {
+    display: flex;
+    align-items: center;
+}
+
+.sidenav .nav-link svg {
+    margin-right: 12px;
+    font-size: 1.3em;
+}
+
+.sidenav .nav-item.active .nav-link {
+    color: #1877f2;
+    font-weight: bold;
+}
+
+/* Create Post Button */
+.new-post-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.new-post-btn:hover {
+    background-color: #166fe5;
+}
+
+.new-post-btn svg {
+    margin-right: 8px;
+}
+
+/* User Account in Sidenav */
+.sidenav .user_account {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.sidenav .user_account:hover {
+    background-color: #f0f2f5;
+}
+
+.sidenav .user_account .small-profilepic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.sidenav .user_account .user-details div:first-child {
+    font-weight: bold;
+}
+
+.sidenav .user_account .user-details .grey {
+    color: #657786;
+    font-size: 0.9em;
+}
+
+/* Main Content Header */
+.heading {
+    padding: 15px 20px;
+    border-bottom: 1px solid #dadde1;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.heading h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.6em;
+}
+
+.heading p {
+    margin: 0;
+    color: #657786;
+}
+
+/* Post Styles */
+.post {
+    background-color: #ffffff;
+    border: 1px solid #dadde1;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post > div {
+    display: flex;
+}
+
+.post a {
+    text-decoration: none;
+}
+
+.post-main {
+    flex-grow: 1;
+    margin-left: 15px;
+}
+
+.post-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-user .small-profilepic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-user strong {
+    font-weight: bold;
+}
+
+.post-user .grey {
+    color: #657786;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.post-content {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+    border-top: 1px solid #dadde1;
+    margin-top: 10px;
+    color: #657786;
+}
+
+.post-actions > div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.post-actions > div:hover {
+    color: #1877f2; /* Example hover color */
+}
+
+.post-actions svg {
+    margin-right: 5px;
+}
+
+/* Comment Section */
+.comment-div {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #dadde1;
+}
+
+.comment-input-div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-input-div .small-profilepic {
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
+     margin-right: 10px;
+}
+
+.comment-input-div form {
+    flex-grow: 1;
+}
+
+.comment-input-div input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #dadde1;
+    border-radius: 20px;
+    outline: none;
+}
+
+.comment-text-div {
+    background-color: #f0f2f5;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+}
+
+.comment-user strong {
+    font-weight: bold;
+}
+
+.comment-user .grey {
+    color: #657786;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+/* Right Sidebar (Suggestions/Guest Box) */
+.suggestion-box, .guest-box {
+    background-color: #ffffff;
+    border: 1px solid #dadde1;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-header, .guest-header {
+    padding: 12px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-bottom: 1px solid #dadde1;
+}
+
+.suggestion-user {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-user:hover {
+    background-color: #f0f2f5;
+}
+
+.suggestion-user .small-profilepic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.suggestion-user .user-details {
+    flex-grow: 1;
+}
+
+.suggestion-user .user-details div:first-child {
+    font-weight: bold;
+}
+
+.suggestion-user .user-details .grey {
+    color: #657786;
+    font-size: 0.9em;
+}
+
+.suggestion-user button {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.suggestion-footer, .guest-btn {
+    padding: 12px 15px;
+}
+
+.suggestion-footer a {
+    color: #1877f2;
+    font-size: 0.9em;
+}
+
+.guest-content {
+    padding: 10px 15px;
+    font-size: 0.9em;
+    color: #657786;
+}
+
+.guest-btn button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+}
+
+.guest-btn button:hover {
+    background-color: #166fe5;
+}
+
+/* Pagination */
+.pagination-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination-bar .page-link {
+    color: #1877f2;
+    border-color: #dadde1;
+    border-radius: 5px;
+    margin: 0 2px;
+    transition: background-color 0.2s ease;
+}
+
+.pagination-bar .page-link:hover {
+    background-color: #f0f2f5;
+}
+
+.pagination-bar .page-item.active .page-link {
+    background-color: #1877f2;
+    border-color: #1877f2;
+    color: white;
+}
+
+.pagination-bar .page-item.disabled .page-link {
+    color: #657786;
+}
+
+/* Popups (Create Post, Delete Confirm, Login Prompt) */
+.popup {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 15px;
-    list-style: none;
-    border-right: .5px solid #e6ecf0;
-    z-index: 100;
-    padding-left: 3%;
-    background-color: white;
-}
-.sidenav ul{
-    list-style: none;
-    padding-left: 0px;
-    margin-top: 3vh;
-}
-.sidenav li{
-    margin-top: 7px;
-}
-.sidenav .nav-link{
-    color: #14171a;
-    line-height: .7em;
-    font-weight: 700;
-    padding: 0px;
-}
-.sidenav .nav-link > div{
-    padding: 10px 20px 8px 12px;
-    border-radius: 25px;
-    line-height: 0.9em;
-    width: max-content;
-}
-.sidenav .nav-link > div:hover{
-    color: #17bf63;
-    background-color: #e7f8ef;
-    transition-duration: .2s;
-}
-.new-post-btn{
-    padding-left: 55px !important;
-    padding-right: 55px !important;
-    font-size: .95em;
-    font-weight: 530;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px !important;
-}
-.user_account{
-    display: flex;
-    font-size: .82rem;
-    font-weight: normal;
-    padding-top: 3px !important;
-    padding-bottom: 3px !important;
-    padding-left: 3px !important;
-}
-.user_account .small-profilepic{
-    transform: scale(.82);
-    margin-left: auto;
-    margin-top: auto;
-}
-.active a{
-    color: #28a745 !important;
-}
-
-
-
-.main-div{
-    position: relative;
-    width: 47.25%;
-    min-height: 100vh;
-    left: 21.8%;
-    /*display: flex;
-    flex-basis: auto;*/
-}
-.left-div{
-    position: relative;
-}
-.head{
-    height: 7.5vh;
-}
-.heading{
-    position: fixed;
-    width: 47.255%;
-    top: 0px;
-    padding: 18px;
-    border-bottom: .5px solid #e6ecf0;
-    line-height: .7em;
-    font-weight: 800;
-    background-color: #fff;
-    z-index: 1000;
-}
-
-.left-div-content{
-    margin-top: 7.5vh;
-}
-
-.new-post > div{
-    display: flex;
-    padding: 8px 18px 8px 18px;
-}
-.small-profilepic{
-    width: 3.1vw;
-    height: 3.1vw;
-    border-radius: 9999px;
-    overflow: hidden;
-    margin-right: 8px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    box-sizing: content-box;
-}
-
-.textarea {
-    display: block;
     width: 100%;
-    overflow: auto;
-    resize: vertical;
-    min-height: 30px;
-    line-height: 20px;
-    max-height: 68vh;
-    outline: none;
-    margin-top: 10px;
-    cursor: auto;
-}
-.textarea[contenteditable]:empty::before {
-    content: "What's happening?";
-    color: gray;
-}
-.textarea[contenteditable]:empty::before:hover{
-    cursor: auto;
-}
-.form-area{
-    width: 100%;
-}/*
-.form-area textarea{
-    width: 100%;
-    max-height: 10vh;
-}*/
-.form-icon-btn{
-    margin-left: -6px;
-    margin-top: 5px;
-    cursor: pointer;
-    line-height: .82em;
-    padding: 6px 10px;
-}
-
-#img-div{
-    height: 290px;
-    width: 100%;
-    border-radius: 15px;
-    display:none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color:white;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-#spinner{
-    position:relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: none;
-}
-
-#del-img{
-    cursor: pointer;
-    position: relative;
-    z-index: 10;
-    left: .6%;
-    top: .6%;
-    padding: 3px;
-    background:none;
-    border:none;
-    outline:none;
-    margin-bottom: 0px;
-}
-#del-img > svg{
-    background-color: rgba(0, 0, 0, 0.77);
-    border-radius: 20px;
-    padding: 4px;
-}
-#del-img > svg:hover{
-    background-color: rgba(0, 0, 0, 0.67);
-}
-#del-img > svg:active{
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-.form-action-btns{
-    margin-top: 8px;
-}
-
-
-.space{
-    height: 8px;
-    background-color: #e6ecf0;
-}
-/*.main-div > div{
-    margin-top: 10px;
-    max-height: 100vh;
-    overflow: auto;
-}*/
-
-
-
-/********** Profile Section **********/
-.cover-image{
-    height: 210px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #ccd6dd;
-}
-.profile-image{
-    width: 160px;
-    height: 160px;
-    position: absolute;
-    left: 15px;
-    top: 110px;
-    border-radius: 99999px;
-    border: 4px solid white;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: white;
-}
-.profile-details{
-    padding: 15px 20px;
-}
-.profile-details button{
-    padding-bottom: 0.3rem;
-}
-.profile-details > .details-data{
-    margin-top: 52px;
-    font-size: .92em;
-}
-.profile-details h5{
-    font-weight: 800;
-    margin-bottom: 0px;
-}
-.profile-details a{
-    color: black;
-    text-decoration: none;
-}
-.bio{
-    margin-top: 8px;
-}
-
-
-/********* Posts Section **********/
-
-@keyframes hidee{
-    0%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-    }
-}
-
-.post{
-    background-color: white;
-    border-top: 1px solid #e6ecf0;
-    padding: 8px 18px 8px 18px;
-    font-size: .9em;
-    animation-name: hidee;
-    animation-duration: .4s;
-    animation-fill-mode: forwards;
-    animation-play-state: paused;
-}
-/*.post:hover{
-    background-color: #f5f8fa;
-    transition-duration: .4s;
-    cursor: pointer;
-}*/
-.post > div{
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-}
-.post a{
-    text-decoration: none;
-    color: black;
-}
-.post-main{
-    flex: 1;
-}
-.post-user{
-    display: flex;
-    justify-content: space-between;
-}
-.dropdown-toggle::after{
-    content: none;
-}
-.dropdown-menu{
-    padding: 0px;
-    overflow: hidden;
-    box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px, rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
-    border: 0px;
-    position: absolute;
-    top: 0px;
-    margin: 0px;
-    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
 }
 
-.dropdown-item{
-    padding-bottom: 13px;
-    padding-top: 13px;
-    font-size: .9em;
-    color: #3f4244;
+.small-popup, .large-popup, .login-popup {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative; /* For close button */
 }
-.dropdown-item:active{
-    background-color: #f3f4f5;
-    color: rgb(65, 56, 56);
-    transition-duration: .1s;
-}
-.dropdown-item:focus{
-    outline: none;
-}
-.post-content{
-    margin-top: 5px;
-}
-.post-image{
-    height: 290px;
-    width: 100%;
-    border-radius: 15px;
-    margin-top: 10px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-.post-actions{
-    display: flex;
-    flex: 1;
-    align-items: stretch;
-    justify-content: space-evenly;
-    color: #657786;
-    margin-top: 10px;
-}
-.post-actions > div{
-    line-height: 1em;
-    padding-left: 10px;
-    padding-right: 10px;
+
+.small-popup {
+    width: 350px;
+    padding: 20px;
     text-align: center;
-    display: flex;
-}
-.post-actions .like:hover{
-    color: #e0245e;
-    transition-duration: .2s;
-}
-.post-actions .comment:hover{
-    color: #1da1f2;
-    transition-duration: .2s;
-}
-.post-actions .save:hover{
-    color: #17bf63;
-    transition-duration: .2s;
-}
-.post-actions .svg-span{
-    padding: 6px;
-    max-height: max-content;
-    border-radius: 999px;
-    line-height: .68em;
-}
-.post-actions .like:hover .svg-span{
-    color: #e0245e;
-    background-color: #f3e3eb;
-    box-shadow: 0 0 0 3px #f3e3eb;
-    transition-duration: .2s;
-    cursor: pointer;
-}
-.post-actions .comment:hover .svg-span{
-    color: #1da1f2;
-    background-color: #dfeffa;
-    box-shadow: 0 0 0 3px #dfeffa;
-    transition-duration: .2s;
-    cursor: pointer;
-}
-.post-actions .save:hover .svg-span{
-    color: #17bf63;
-    background-color: #def2eb;
-    box-shadow: 0 0 0 3px #def2eb;
-    transition-duration: .2s;
-    cursor: pointer;
 }
 
-.comment-div{
-    margin: 10px 0px;
-    padding-left: 10px;
-    max-height: 75vh;
-    overflow: hidden;
-}
-.comment-div #spinner{
-    transform: translate(-50%, 0%);
-}
-.comment-div > div{
-    width: 100%;
-}
-.head-comment-input{
-    width: 100%;
-    display: flex;
+.small-popup .btn {
+    margin: 0 10px;
 }
 
-@keyframes godown{
-    0%{
-        margin-top: -10px;
-        opacity: .7;
-    }
-    100%{
-        margin-top: 10px;
-        opacity: 1;
-    }
+.large-popup {
+    width: 600px;
+    padding: 20px;
 }
 
-.eachrow{
-    display: flex;
-    margin-top: 10px;
-    width: 90%;
+.large-popup .small-profilepic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
 }
-.godown{
-    animation-name: godown;
-    animation-duration: .3s;
-    animation-fill-mode: forwards;
-}
-.comment-div .small-profilepic{
-    width: 2.7vw;
-    height: 2.7vw;
-}
-.comment-input-div{
+
+.large-popup textarea {
     width: 100%;
-    height: 100%;
-    border-radius: 17px;
-    background-color: #f0f2f5;
-    overflow: hidden;
-    padding: 0px 10px;
-    transition-duration: .4s;
-}
-.post:hover .comment-input-div{
-    /*background-color: white;*/
-    transition-duration: .4s;
-}
-.comment-input-div form{
-    height: 100%;
-}
-.comment-input-div input{
-    background: none;
-    width: 100%;
-    height: 100%;
     border: none;
     outline: none;
     font-size: 1.1em;
-}
-.comment-text-div{
-    padding:8px 13px;
-    background-color: #f0f2f5;
-    border-radius: 17px;
-    cursor: auto;
-    display: inline-block;
-}
-.post:hover .comment-text-div{
-    /*background-color: white;*/
-    transition-duration: .4s;
-}
-.comment-text-div a{
-    font-size: .93em;
-    font-weight: 630;
-}
-.comment-text-div a:hover{
-    text-decoration: underline;
+    resize: vertical;
+    min-height: 100px;
 }
 
-.pagination-bar{
-    margin-top: 35px;
-    margin-bottom: 35px;
-}
-.pagination-bar .page-link{
-    line-height: .9em;
-}
-.page-item.active .page-link{
-    color: white !important;
-    background-color: #28a745;
-    border-color: #28a745;
-}
-.page-link{
-    color: #28a745;
-}
-.page-link:hover{
-    color: #218838;
-}
-.page-link:focus{
-    box-shadow: none !important;
-    z-index: 0;
-}
-
-
-
-
-.right-div{
-    width: 28%;
-    height: 100vh;
-    position: fixed;
-    right: 2.95%;
-    border-left: .5px solid #e6ecf0;
-    background-color: white;
-}
-.right-div .head{
-    padding: .9vh 1.5vw;
-}
-.right-div .search-div{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    /*width: min-content;*/
-    border-radius: 25px;
-    background-color: #e6ecf0;
-    padding-left: 10px;
-    padding-right: 10px;
-    vertical-align: middle;
-}
-#search-box{
-    height: 5.7vh;
-    border: none;
-    background: none;
-    outline: none;
-    width: 100%;
-    margin-left: 8px;
-}
-#search-box::placeholder{
-    color: #6d7e8c;
-}
-
-
-.right-div-content{
-    height: 92.5vh;
-    overflow: auto;
-    padding-left: 1.5vw;
-    padding-right: 1.5vw;
-}
-.suggestion-box, .guest-box{
-    border-radius: 15px;
-    overflow: hidden;
-    background-color: #f5f8fa;
-}
-.user-details #user-name:hover{
-    text-decoration: underline;
-}
-.suggestion-header{
-    padding: 13px 15px;
-    line-height: .9em;
-    font-weight: 800;
-    border-bottom: .5px solid #e6ecf0;
-}
-.suggestion-user{
-    display: flex;
-    padding: 10px 15px;
-    font-size: .9em;
-    border-bottom: .5px solid #e6ecf0;
-}
-.suggestion-user:hover{
-    background-color: #edf0f4;
-    cursor: pointer;
-    transition-duration: .2s;
-}
-.suggestion-user  a{
-    color: black;
-    text-decoration: none;
-}
-.user-details{
-    flex: 1;
-    line-height: 1.1em;
-    padding: 5px 0px 7px 0px;
-}
-.suggestion-user .btn{
-    padding: 0em 1em .09em 1em;
-}
-.suggestion-footer{
-    padding: 13px 15px;
-    line-height: .9em;
-}
-.suggestion-footer a{
-    text-decoration: none;
-}
-
-.guest-header{
-    padding: 13px 15px 8px 15px;
-    line-height: .9em;
-    font-weight: bolder;
-}
-.guest-header h5{
-    margin-bottom: 0px;
-}
-.guest-content{
-    padding: 0px 15px 10px 15px;
-    font-size: .88em;
-}
-.guest-btn{
-    padding: 0px 15px 15px 15px;
-}
-
-
-
-.right-div-content::-webkit-scrollbar{
-    visibility: hidden;
-    width: 8px;
-    transition-duration: .5s;
-    background-color: transparent;
-}
-
-.right-div-content:hover::-webkit-scrollbar, .right-div-content:hover::-webkit-scrollbar-thumb{
-    border-radius: 8px;
-    background-color: grey;
-    transition-duration: .5s;
-}
-
-
-.blackout{
-    position: fixed;
-    width: 100vw;
-    height: 100%;
-    background-color: rgba(0,0,0,.25);
-    display: none;
-    z-index: 5499;
-}
-
-@keyframes large_popup{
-    0%{
-        transform: scale(.9);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
-
-@keyframes small_popup{
-    0%{
-        transform: scale(.8);
-    }
-    100%{
-        transform: scale(1);
-    }
-}
-
-
-.popup{
-    display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999999;
-}
-.popup .btn{
-    padding-left: 30px;
-    padding-right: 30px;
-}
-.small-popup{
-    display: none;
-    position: absolute;
-    top: 200px;
-    left: 37%;
-    width: 23%;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    align-items: center;
-    text-align: center;
-    padding: 25px 20px;
-    overflow: auto;
-    border-radius: 17px;
-    animation-name: small_popup;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-}
-.large-popup{
-    display: none;
-    position: absolute;
-    top: 34px;
-    left: 25%;
-    width: 47.5%;
-    max-height: 90vh;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    padding: 24px 20px 15px 20px;
-    overflow: auto;
-    border-radius: 17px;
-    animation-name: large_popup;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-}
-.large-popup div{
-    display: flex;
-}
-.large-popup form{
-    margin-top: 5px;
-    width: 100%;
-}
-.large-popup textarea{
-    width: 100%;
-    outline: none;
-    border: none;
-}
-.large-popup hr{
-    margin: 0px;
-}
-.large-popup textarea:focus hr{
-    color: #28a745;
-}
-.large-popup .form-action-btns{
+.large-popup .form-action-btns {
     display: flex;
     justify-content: space-between;
-}
-.large-popup .float-right{
-    margin-left: 10px;
+    align-items: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #dadde1;
 }
 
+.large-popup .form-action-btns .btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+}
 
-.login-popup{
+.large-popup #img-div {
+    max-width: 100%;
+    margin: 10px 0;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    min-height: 200px;
+    position: relative;
     display: none;
+}
+
+.large-popup #del-img {
     position: absolute;
-    top: 65px;
-    left: 25%;
-    width: 47.5%;
-    max-height: 90vh;
-    transform: translate(-50%,-50%);
-    background-color: white;
-    padding: 15px 20px 15px 20px;
-    overflow: auto;
-    border-radius: 17px;
-    animation-name: large_popup;
-    animation-duration: .2s;
-    animation-fill-mode: forwards;
-}
-.login-popup .icon-div{
-    margin-top: 40px;
-}
-.login-popup .icon-btn{
-    margin-left: -10px;
-    margin-top: -5px;
-}
-.login-popup .main_text-div{
-    margin-top: 55px;
-}
-.login-popup .btn-div{
-    margin-top: 65px;
-    width: 350px;
-    margin-bottom: 35px;
-}
-.login-popup .btn-div button{
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
 }
 
-/*.blackout{
-    width: 100vw;
-    height: 100vh;
-    z-index: 10000;
-}*/
+.large-popup #spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-::-webkit-scrollbar-track {
-    background: none;
+.login-popup {
+    width: 400px;
+    padding: 20px;
+    text-align: center;
 }
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+
+.login-popup .icon-div {
+    margin-bottom: 20px;
 }
-::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 5px;
+
+.login-popup .main_text-div h2 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.login-popup .btn-div button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.login-popup .btn-success {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+}
+
+.login-popup .btn-success:hover {
+    background-color: #166fe5;
+}
+
+.login-popup .btn-outline-success {
+    border-color: #dadde1;
+    color: #1c1e21;
+}
+
+.login-popup .btn-outline-success:hover {
+    background-color: #f0f2f5;
+    color: #1c1e21;
+}
+
+/* Utility Classes */
+.grey {
+    color: #657786;
+}
+
+
+/* Profile Page specific styles */
+.profile-view .cover-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.profile-view .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: -50px; /* Overlap with cover image */
+    padding: 0 20px 15px 20px;
+}
+
+.profile-view .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-view .profile-actions button {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.profile-view .details-data {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #dadde1;
+}
+
+.profile-view .details-data h5 {
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+.profile-view .details-data .grey {
+    margin-bottom: 10px;
+}
+
+.profile-view .bio {
+    margin-bottom: 10px;
+}
+
+.profile-view .details-data a {
+    color: #1877f2;
+    margin-right: 15px;
+}
+
+.profile-view .details-data a:hover {
+    text-decoration: underline;
+}
+
+.profile-view .posts-view {
+    padding: 0 20px;
+}
+
+/* Fallback for missing profile pictures */
+.small-profilepic {
+    background-color: #ced0d4; /* Default grey background */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

@@ -1,0 +1,89 @@
+{% extends 'network/layout.html' %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>Notifications</h2>
+    <div id="notifications-list">
+        {% for notification in notifications %}
+        <div class="card mb-3 notification {% if not notification.is_read %}unread{% endif %}" data-id="{{ notification.id }}">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    {% if notification.sender.profile_pic %}
+                    <img src="{{ notification.sender.profile_pic.url }}" class="rounded-circle me-3" style="width: 40px; height: 40px;">
+                    {% endif %}
+                    <div>
+                        <strong>{{ notification.sender.username }}</strong>
+                        {% if notification.notification_type == 'follow' %}
+                            started following you
+                        {% elif notification.notification_type == 'like' %}
+                            liked your post
+                        {% elif notification.notification_type == 'comment' %}
+                            commented on your post
+                        {% elif notification.notification_type == 'mention' %}
+                            mentioned you in a comment
+                        {% endif %}
+                        <small class="text-muted d-block">{{ notification.created_at|timesince }} ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No notifications yet</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mark notifications as read when clicked
+    document.querySelectorAll('.notification').forEach(notification => {
+        notification.addEventListener('click', function() {
+            const notificationId = this.dataset.id;
+            fetch(`/notifications/${notificationId}/read/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    this.classList.remove('unread');
+                }
+            });
+        });
+    });
+
+    // Function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+
+<style>
+.notification {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification:hover {
+    background-color: #f8f9fa;
+}
+
+.notification.unread {
+    background-color: #e8f4f8;
+}
+</style>
+{% endblock %} 
